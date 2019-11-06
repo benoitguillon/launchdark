@@ -15,6 +15,7 @@ package org.talend.launchdark.launchdark;
 
 import com.launchdarkly.client.LDClient;
 import com.launchdarkly.client.LDUser;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.security.core.context.SecurityContextHolder;
@@ -23,9 +24,12 @@ import org.springframework.security.core.userdetails.UserDetails;
 @Configuration
 public class FeatureFlipping {
 
+    @Value("${launchDarklyKey}")
+    private String launchDarklyKey;
+
     @Bean
     public FeatureFlippingService featureFlippingService() {
-        final LDClient client = new LDClient("xxxxxxxx");
+        final LDClient client = new LDClient(launchDarklyKey);
 
         return new FeatureFlippingService() {
             @Override
