@@ -1,0 +1,61 @@
+<!doctype html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>Feature flipping demo</title>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+    <script src="/webjars/bootstrap/4.3.1/js/bootstrap.min.js"></script>
+    <link rel='stylesheet' href='/webjars/bootstrap/4.3.1/css/bootstrap.min.css'>
+    <meta charset="utf-8">
+</head>
+<body>
+
+<div class="d-flex flex-column flex-md-row align-items-center p-3 px-md-4 mb-3 bg-white border-bottom box-shadow">
+    <h5 class="my-0 mr-md-auto font-weight-normal"><a href="/products">Product catalog</a></h5>
+    <nav class="my-2 my-md-0 mr-md-3">
+        <a class="p-2 text-dark" href="#" th:text="'Welcome ' + ${user}"></a>
+    </nav>
+    <a class="btn btn-outline-primary" href="/log-out">Log out</a>
+</div>
+
+<div class="content text-center">
+    <span th:text="'Displaying ' + ${maxProducts} + ' products'"></span>
+</div>
+
+<!--
+<div class="content text-center" th:if="${fancyNewFeature}">
+    <img src="/static/unicorn.png"/>
+</div>
+-->
+
+<div class="content ml-5 mr-5 mt-5">
+
+    <div class="table-responsive">
+        <table class="table table-striped table-sm">
+            <thead>
+            <tr>
+                <th>Identifier</th>
+                <th>Label</th>
+                <th>Unit price</th>
+                <th>Availability</th>
+            </tr>
+            </thead>
+            <tbody>
+            <tr th:each="product : ${products}">
+                <td th:text="${product.id}"></td>
+                <td>
+                    <span th:if="${showProductDetail}"><a href="#" th:text="${product.name}"></a></span>
+                    <span th:unless="${showProductDetail}" th:text="${product.name}"></span>
+                </td>
+                <td th:text="${product.price}"></td>
+                <td th:text="${product.availability}"></td>
+            </tr>
+            </tbody>
+        </table>
+    </div>
+
+
+</div>
+
+
+</body>
+</html>
