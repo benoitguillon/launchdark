@@ -42,6 +42,10 @@ public class Products {
         model.addAttribute("user", getUserDetails().getUsername());
         model.addAttribute("showProductDetail", isShowProductDetail());
         model.addAttribute("fancyNewFeature", isFancyNewFeature());
+
+        String toto = "max-products";
+
+
         return "catalog";
     }
 
